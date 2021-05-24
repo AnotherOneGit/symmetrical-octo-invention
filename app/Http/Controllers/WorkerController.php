@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\WorkerResource;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 
@@ -10,11 +11,12 @@ class WorkerController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        //
+        return WorkerResource::collection(Worker::all());
+//        return response()->json(Worker::with('timesheets')->get(), 200, array(), JSON_PRETTY_PRINT);
     }
 
     /**
@@ -32,11 +34,11 @@ class WorkerController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Worker  $worker
-     * @return \Illuminate\Http\Response
+     * @return WorkerResource
      */
     public function show(Worker $worker)
     {
-        //
+        return new WorkerResource($worker);
     }
 
     /**

@@ -15,7 +15,9 @@ class CreateTimeSheetsTable extends Migration
     {
         Schema::create('time_sheets', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('worker_id')->references('id')->on('workers')->cascadeOnDelete();
+            $table->timestamp('start_work')->nullable();
+            $table->timestamp('end_work')->nullable();
         });
     }
 

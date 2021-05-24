@@ -22,7 +22,8 @@ class WorkerFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->unique()->name(),
+            'phone' => $this->faker->unique()->phoneNumber()
         ];
     }
 }

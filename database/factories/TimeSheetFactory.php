@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\TimeSheet;
+use App\Models\Worker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TimeSheetFactory extends Factory
@@ -22,7 +23,9 @@ class TimeSheetFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'worker_id' => Worker::factory(),
+            'start_work' => now(),
+            'end_work' => now()->addHours(8)
         ];
     }
 }

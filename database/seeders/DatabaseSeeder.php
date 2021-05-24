@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\TimeSheet;
+use App\Models\Worker;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +15,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+//         \App\Models\User::factory(10)->create();
+//         Worker::factory(9)->create();
+        TimeSheet::factory(9)->create();
     }
 }
