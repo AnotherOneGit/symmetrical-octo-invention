@@ -11,6 +11,11 @@ class TimeSheet extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'start_work',
+        'end_work'
+    ];
+
     public function worker()
     {
         return $this->belongsTo(Worker::class);

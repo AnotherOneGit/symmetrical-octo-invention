@@ -9,6 +9,11 @@ class Worker extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'phone'
+    ];
+
     public $timestamps = false;
 
     public function timesheets()

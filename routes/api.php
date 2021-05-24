@@ -20,4 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('workers', WorkerController::class);
-//Route::get('/workers', [WorkerController::class, 'index']);
+Route::post('/workers/{worker}/addTime', [WorkerController::class, 'addTime']);

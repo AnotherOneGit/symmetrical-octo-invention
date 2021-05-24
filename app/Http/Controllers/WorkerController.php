@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WorkerStoreRequest;
 use App\Http\Resources\WorkerResource;
 use App\Models\Worker;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Response;
 
 class WorkerController extends Controller
 {
@@ -22,18 +25,21 @@ class WorkerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return WorkerResource
      */
-    public function store(Request $request)
+    public function store(WorkerStoreRequest $request)
     {
-        //
+        $worker = Worker::create(
+            $request->validated()
+        );
+        return new WorkerResource($worker);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Worker  $worker
+     * @param Worker $worker
      * @return WorkerResource
      */
     public function show(Worker $worker)
@@ -44,23 +50,35 @@ class WorkerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Worker  $worker
-     * @return \Illuminate\Http\Response
+     * @param WorkerStoreRequest $request
+     * @param Worker $worker
+     * @return WorkerResource
      */
-    public function update(Request $request, Worker $worker)
+    public function update(WorkerStoreRequest $request, Worker $worker)
     {
-        //
+        $worker->update($request->validated());
+
+        return new WorkerResource($worker);
+    }
+
+    public function addTime(Request $request, Worker $worker)
+    {
+        $worker->timesheets()->create([
+            'start_work' => $request->start_work,
+            'end_work' => $request->end_work,
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Worker  $worker
+     * @param Worker $worker
      * @return \Illuminate\Http\Response
      */
     public function destroy(Worker $worker)
     {
-        //
+        $worker->delete();
+
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }
