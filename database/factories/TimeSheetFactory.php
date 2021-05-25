@@ -21,12 +21,12 @@ class TimeSheetFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'worker_id' => Worker::factory(),
             'start_work' => DateTime::dateTimeBetween('-3 days', '-2 days'),
-            'end_work' => DateTime::dateTimeBetween('-1 days', '+1 days')
+            'end_work' => DateTime::dateTimeBetween('-1 days', '+1 days'),
         ];
     }
 }

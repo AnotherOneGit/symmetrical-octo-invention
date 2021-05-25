@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Worker extends Model
 {
@@ -11,12 +12,12 @@ class Worker extends Model
 
     protected $fillable = [
         'name',
-        'phone'
+        'phone',
     ];
 
     public $timestamps = false;
 
-    public function timesheets()
+    public function timesheets(): HasMany
     {
         return $this->hasMany(TimeSheet::class);
     }

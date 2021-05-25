@@ -2,17 +2,25 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Worker;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+
+/**
+ * Class WorkerResource
+ * @package App\Http\Resources
+ * @mixin Worker
+ */
 
 class WorkerResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,

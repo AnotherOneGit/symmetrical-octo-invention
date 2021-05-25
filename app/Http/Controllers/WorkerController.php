@@ -6,8 +6,7 @@ use App\Http\Requests\AddTimeRequest;
 use App\Http\Requests\WorkerStoreRequest;
 use App\Http\Resources\WorkerResource;
 use App\Models\Worker;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
 class WorkerController extends Controller
@@ -15,9 +14,9 @@ class WorkerController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
         return WorkerResource::collection(Worker::all());
     }
@@ -25,10 +24,10 @@ class WorkerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param WorkerStoreRequest $request
      * @return WorkerResource
      */
-    public function store(WorkerStoreRequest $request)
+    public function store(WorkerStoreRequest $request): WorkerResource
     {
         $worker = Worker::create(
             $request->validated()
@@ -42,7 +41,7 @@ class WorkerController extends Controller
      * @param Worker $worker
      * @return WorkerResource
      */
-    public function show(Worker $worker)
+    public function show(Worker $worker): WorkerResource
     {
         return new WorkerResource($worker);
     }
@@ -54,7 +53,7 @@ class WorkerController extends Controller
      * @param Worker $worker
      * @return WorkerResource
      */
-    public function update(WorkerStoreRequest $request, Worker $worker)
+    public function update(WorkerStoreRequest $request, Worker $worker): WorkerResource
     {
         $worker->update(
             $request->validated()
@@ -63,7 +62,7 @@ class WorkerController extends Controller
         return new WorkerResource($worker);
     }
 
-    public function addTime(AddTimeRequest $request, Worker $worker)
+    public function addTime(AddTimeRequest $request, Worker $worker): WorkerResource
     {
         $worker->timesheets()->create(
             $request->validated(),
@@ -77,7 +76,7 @@ class WorkerController extends Controller
      * @param Worker $worker
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Worker $worker)
+    public function destroy(Worker $worker): Response
     {
         $worker->delete();
 

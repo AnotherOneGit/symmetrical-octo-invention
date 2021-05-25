@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TimeSheet extends Model
 {
@@ -13,10 +14,10 @@ class TimeSheet extends Model
 
     protected $fillable = [
         'start_work',
-        'end_work'
+        'end_work',
     ];
 
-    public function worker()
+    public function worker(): BelongsTo
     {
         return $this->belongsTo(Worker::class);
     }
