@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddTimeRequest;
 use App\Http\Requests\WorkerStoreRequest;
 use App\Http\Resources\WorkerResource;
 use App\Models\Worker;
@@ -19,7 +20,6 @@ class WorkerController extends Controller
     public function index()
     {
         return WorkerResource::collection(Worker::all());
-//        return response()->json(Worker::with('timesheets')->get(), 200, array(), JSON_PRETTY_PRINT);
     }
 
     /**
@@ -56,17 +56,19 @@ class WorkerController extends Controller
      */
     public function update(WorkerStoreRequest $request, Worker $worker)
     {
-        $worker->update($request->validated());
+        $worker->update(
+            $request->validated()
+        );
 
         return new WorkerResource($worker);
     }
 
-    public function addTime(Request $request, Worker $worker)
+    public function addTime(AddTimeRequest $request, Worker $worker)
     {
-        $worker->timesheets()->create([
-            'start_work' => $request->start_work,
-            'end_work' => $request->end_work,
-        ]);
+        $worker->timesheets()->create(
+            $request->validated(),
+        );
+        return new WorkerResource($worker);
     }
 
     /**
