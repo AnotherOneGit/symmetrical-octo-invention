@@ -74,7 +74,7 @@ class WorkerController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Worker $worker
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(Worker $worker): Response
     {
