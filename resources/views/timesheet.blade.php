@@ -4,7 +4,7 @@
             <input type="text" name="name" value="{{ request()->name }}">
         </label>
         <label>Date
-            <input type="date" name="date">
+            <input type="date" name="date" value="{{ request()->date }}">
         </label>
         <button type="submit">Filter</button>
     </form>
