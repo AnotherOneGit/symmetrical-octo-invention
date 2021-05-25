@@ -1,10 +1,10 @@
 <div style="width:75%; text-align:center">
-    <form action="/">
+    <form action="/workers">
         <label>Name
-            <input type="text">
+            <input type="text" name="name" value="{{ request()->name }}">
         </label>
         <label>Date
-            <input type="date">
+            <input type="date" name="date">
         </label>
         <button type="submit">Filter</button>
     </form>

@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [TimeSheetViewController::class, 'timeSheetView']);
+Route::get('/workers', [TimeSheetViewController::class, 'timeSheetView']);

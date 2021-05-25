@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\TimeSheet;
 use App\Models\Worker;
+use Faker\Provider\DateTime;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TimeSheetFactory extends Factory
@@ -24,8 +25,8 @@ class TimeSheetFactory extends Factory
     {
         return [
             'worker_id' => Worker::factory(),
-            'start_work' => now(),
-            'end_work' => now()->addHours(8)
+            'start_work' => DateTime::dateTimeBetween('-3 days', '-2 days'),
+            'end_work' => DateTime::dateTimeBetween('-1 days', '+1 days')
         ];
     }
 }
